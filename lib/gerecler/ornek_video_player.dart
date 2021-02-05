@@ -24,6 +24,7 @@ class _MuzikAtolyesiState extends State<MuzikAtolyesi> {
     );
     super.initState();
   }
+
 /*
   // genel homepage yapısı olusturuldu bu sekılde cevaplar ve sorular seklınde olabılır
   getVideosLinks() async {
@@ -48,7 +49,13 @@ class _MuzikAtolyesiState extends State<MuzikAtolyesi> {
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-                  Text("Müzik Atölyesi",style: TextStyle(fontFamily: "baslik",fontWeight: FontWeight.bold,fontSize: 25),),
+                  Text(
+                    "Müzik Atölyesi",
+                    style: TextStyle(
+                        fontFamily: "baslik",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25),
+                  ),
                   SizedBox(
                     height: 10,
                   ),
@@ -67,7 +74,10 @@ class _MuzikAtolyesiState extends State<MuzikAtolyesi> {
                         child: Text("bas"),
                       ),
                        */
-                      Text("Notalar",style: TextStyle(fontFamily: "baslik",fontSize: 30),),
+                      Text(
+                        "Notalar",
+                        style: TextStyle(fontFamily: "baslik", fontSize: 30),
+                      ),
                       Container(
                         child: Image.network(
                             "http://iblog.milliyet.com.tr/imgroot/blogv7/Blog333/2015/03/08/23/492196-3-4-3dec0.jpg"),
@@ -130,12 +140,15 @@ class _MuzikAtolyesiState extends State<MuzikAtolyesi> {
                       SizedBox(
                         height: 50,
                       ),
-                      Text("Telli Çalgılar",style: TextStyle(fontFamily: "baslik",fontSize: 30),),
+                      Text(
+                        "Telli Çalgılar",
+                        style: TextStyle(fontFamily: "baslik", fontSize: 30),
+                      ),
                       Container(
                         child: Image.network(
                             "https://lh3.googleusercontent.com/proxy/wrc_d9qPvyRI4kZLpdqj7-SvB_ab7ULDOk7NxExF1JyZGhYAz3TZ49GlCMdionCVQ2tQn23tnmFcSZOlji-xeuOXFdIerlnetGj9U9cQI4BrIl-3ZtYEOd5_FLBa8w"),
                       ),
-    /*
+                      /*
 
                       ListTile(
                         title: Text("A"),
@@ -194,13 +207,21 @@ class _MuzikAtolyesiState extends State<MuzikAtolyesi> {
                       SizedBox(
                         height: 50,
                       ),
-                      Text("Vurmalı Çalgılar",style: TextStyle(fontFamily: "baslik",fontSize: 30),),
+                      Text(
+                        "Vurmalı Çalgılar",
+                        style: TextStyle(fontFamily: "baslik", fontSize: 30),
+                      ),
                       Container(
                         child: Image.network(
                             "https://www.yonkamuzikmarket.com/Uploads/Blog/Vurmali-Muzik-Aletleri-Nelerdir--Vurmali-9ba3.jpeg"),
                       ),
-                      SizedBox(height: 50,),
-                      Text("Üflemeli Çalgılar",style: TextStyle(fontFamily: "baslik",fontSize: 30),),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      Text(
+                        "Üflemeli Çalgılar",
+                        style: TextStyle(fontFamily: "baslik", fontSize: 30),
+                      ),
                       Container(
                         child: Image.network(
                             "http://karnavalsanat.com/wp-content/uploads/2015/10/Nefesli-Calgilar.jpg"),
