@@ -27,7 +27,7 @@ class DersWidget {
                 ),
               ),
             ),
-             Text("${k.baslik}", style:Stiller.baslik),
+             Text('${k.baslik}', style:Stiller.baslik),
           ],
         ),
       ),
@@ -35,7 +35,7 @@ class DersWidget {
   }
 
   static List<Widget> dersKonulari() {
-    List<Widget> dk = [];
+    List<Widget> dk = [ ];
     for (var i = 0; i < konular.length; i++) {
       dk.add(konuWidget(konular[i]));
     }
