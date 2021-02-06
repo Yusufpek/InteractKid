@@ -1,8 +1,8 @@
-class Konu{
+class Konu {
   final String baslik;
   //AssetImage resim;
   final String resimLinki;
-  final String rota;
+  final String videoUrl;
 
-  Konu({this.baslik,this.resimLinki,this.rota});
+  Konu({this.baslik, this.resimLinki, this.videoUrl});
 }

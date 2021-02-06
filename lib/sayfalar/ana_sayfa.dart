@@ -16,6 +16,6 @@ class AnaSayfa extends StatelessWidget {
             mainAxisSpacing: 20,
             crossAxisSpacing: 20,
             padding: const EdgeInsets.all(20),
-            children: DersWidget.dersKonulari()));
+            children: DersWidget.dersKonulari(context)));
   }
 }
