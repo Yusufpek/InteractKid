@@ -1,4 +1,4 @@
-import '../models/konular/konu.dart';
+import '../models/konu.dart';
 
 //Geçici olarak denemelik konu başlıkları
 final Konu konu1 = Konu(

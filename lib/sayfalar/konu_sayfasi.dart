@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../models/konular/konu.dart';
+import '../models/konu.dart';
 
 class KonuSayfasi extends StatefulWidget {
   final Konu konu;

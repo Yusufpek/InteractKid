@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../sayfalar/konu_sayfasi.dart';
 import '../gerecler/stiller.dart';
-import '../models/konular/konu.dart';
+import '../models/konu.dart';
 import '../gerecler/konular.dart';
 
 class DersWidget {
