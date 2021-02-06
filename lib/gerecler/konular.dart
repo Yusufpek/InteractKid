@@ -1,3 +1,4 @@
+import 'sorular.dart';
 import '../models/konu.dart';
 
 List<Konu> konular = [
@@ -6,6 +7,7 @@ List<Konu> konular = [
     resimLinki:
         'https://cdn.pixabay.com/photo/2016/11/29/13/20/balloons-1869790_960_720.jpg',
     videoUrl: 'https://www.youtube.com/watch?v=wrqOealh-pU',
+    sorular: renkSorulari,
   ),
   Konu(
     baslik: 'Sayılar',
