@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:interact_kid/gerecler/ornek_video_player.dart';
 
 import 'sayfalar/ana_sayfa.dart';
 

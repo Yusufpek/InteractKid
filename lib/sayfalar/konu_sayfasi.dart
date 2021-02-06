@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../models/konu.dart';
@@ -20,8 +21,30 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
   void initState() {
     _controller = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(konu.videoUrl),
+      flags: YoutubePlayerFlags(
+        enableCaption: false,
+      ),
     );
+
     super.initState();
+  }
+
+  @override
+  void deactivate() {
+    _controller.pause();
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    //Sayfadan çıkarken ekranı dikey konuma getiriyoruz.
+    //Eğer video tam ekran olursa ekranımız diğer sayfalarda yatay ekran olarak kalıyor.
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -31,7 +54,18 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
         title: Text(widget.konu.baslik),
         centerTitle: true,
       ),
-      body: YoutubePlayer(controller: _controller),
+      body: youtubePlayer(),
     );
+  }
+
+  Widget youtubePlayer() {
+    return YoutubePlayer(
+        controller: _controller,
+        showVideoProgressIndicator: false,
+        onEnded: (YoutubeMetaData md) {
+          print(md);
+          _controller.toggleFullScreenMode();
+          Navigator.pop(context);
+        });
   }
 }

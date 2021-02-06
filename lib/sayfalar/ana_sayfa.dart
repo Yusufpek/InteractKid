@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
 
+import '../gerecler/konular.dart';
 import '../widgets/dersWidget.dart';
 
 class AnaSayfa extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Interact Kid'),
-          centerTitle: true,
+      appBar: AppBar(
+        title: Text('Interact Kid'),
+        centerTitle: true,
+      ),
+      body: GridView.builder(
+        padding: const EdgeInsets.all(20),
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
         ),
-        body: GridView.count(
-            primary: false,
-            crossAxisCount: 2,
-            mainAxisSpacing: 20,
-            crossAxisSpacing: 20,
-            padding: const EdgeInsets.all(20),
-            children: DersWidget.dersKonulari(context)));
+        itemCount: konular.length,
+        itemBuilder: (c, i) {
+          return konuWidget(konular[i], c);
+        },
+      ),
+    );
   }
 }
