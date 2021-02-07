@@ -20,6 +20,7 @@ List<Konu> konular = [
     resimLinki:
         'https://en.islcollective.com/preview/201711/f/jobs-and-occupations-flashcards_102308_1.jpg',
     videoUrl: 'https://www.youtube.com/watch?v=FCaI9OufOx0',
+    sorular: meslekSorulari,
   ),
   Konu(
     baslik: 'Hayvanlar',

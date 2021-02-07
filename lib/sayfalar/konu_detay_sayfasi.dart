@@ -20,6 +20,9 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
   YoutubePlayerController _controller;
   bool isVideoEnded = false;
   int _index = 0;
+  bool isFirstTime = true;
+  var _height;
+  var _width;
   @override
   void initState() {
     _controller = YoutubePlayerController(
@@ -35,7 +38,10 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
   @override
   Future<void> didChangeDependencies() async {
     super.didChangeDependencies();
-    await sesleriYukle();
+    _height = MediaQuery.of(context).size.height;
+    _width = MediaQuery.of(context).size.width;
+    await baslangicSesleriniYukle();
+    await sesleriYukle(konu.sorular);
   }
 
   @override
@@ -51,6 +57,7 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
     //Eğer video tam ekran olursa ekranımız diğer sayfalarda yatay ekran olarak kalıyor.
     setScreenPortrait();
     _controller ?? _controller.dispose();
+    sesiBitir();
     print('dispose');
     super.dispose();
   }
@@ -63,7 +70,7 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
         centerTitle: true,
       ),
       body: Center(
-        child: isVideoEnded ? sorular() : youtubePlayer(),
+        child: !isVideoEnded ? sorular() : youtubePlayer(),
       ),
     );
   }
@@ -94,15 +101,24 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
       konu.sorular[_index].secenek4,
     ];
     _siklar.shuffle();
-
+    if (isFirstTime) {
+      soruyuOku(konu.sorular[_index]);
+      isFirstTime = false;
+    }
     return Column(
       children: <Widget>[
         Container(
-          height: 200,
+          padding: EdgeInsets.all(5),
+          height: _height * 0.2,
+          width: _width * 0.7,
           child: Image.network(
             konu.sorular[_index].soruResmi,
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
+        ),
+        FloatingActionButton(
+          onPressed: () => soruyuOku(konu.sorular[_index]),
+          child: Icon(Icons.volume_up),
         ),
         Expanded(
           child: GridView.builder(
@@ -121,17 +137,23 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
 
   Widget _con(String url) {
     bool _isCorrect;
+
     void checkAnswer() async {
       _isCorrect = url == konu.sorular[_index].dogruCevap ? true : false;
       if (_isCorrect) {
+        //await playLocal();
         await dogruCevapSesiniCal();
+        await Future.delayed(Duration(seconds: 3));
         if (_index < (konu.sorular.length - 1)) {
           _index++;
+          isFirstTime = true;
         } else {
           Navigator.pop(context);
         }
       } else {
+        print('yanlis cevap!');
         await yanlisCevapSesiniCal();
+        await Future.delayed(Duration(seconds: 2));
       }
       setState(() {});
     }
@@ -139,13 +161,13 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
     return InkWell(
       onTap: checkAnswer,
       child: Container(
-        width: 150,
-        height: 150,
+        width: _height * 0.07,
+        height: _width * 0.06,
         padding: EdgeInsets.all(20),
         child: Image.network(
           url,
           fit: BoxFit.cover,
-          errorBuilder: (context, o, s) {
+          errorBuilder: (context, object, stack) {
             return Icon(Icons.error_outline_outlined);
           },
         ),
