@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../gerecler/konular.dart';
-import '../widgets/konu_widget.dart';
+import '../gerecler/widgets/konu_widget.dart';
 
 class AnaSayfa extends StatelessWidget {
   @override

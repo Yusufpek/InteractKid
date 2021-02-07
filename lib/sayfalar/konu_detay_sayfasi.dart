@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../gerecler/sesler.dart';
+import '../gerecler/widgets/youtube_player.dart';
 import '../models/konu.dart';
 
 class KonuSayfasi extends StatefulWidget {
@@ -17,7 +18,7 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
   final Konu konu;
   _KonuSayfasiState(this.konu);
 
-  YoutubePlayerController _controller;
+  YoutubePlayerController controller;
   bool isVideoEnded = false;
   int _index = 0;
   bool isFirstTime = true;
@@ -25,7 +26,7 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
   var _width;
   @override
   void initState() {
-    _controller = YoutubePlayerController(
+    controller = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(konu.videoUrl),
       flags: YoutubePlayerFlags(
         enableCaption: false,
@@ -40,14 +41,13 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
     super.didChangeDependencies();
     _height = MediaQuery.of(context).size.height;
     _width = MediaQuery.of(context).size.width;
-    await baslangicSesleriniYukle();
-    await sesleriYukle(konu.sorular);
+    konu.sorular ?? await baslangicSesleriniYukle();
+    konu.sorular ?? await sesleriYukle(konu.sorular);
   }
 
   @override
   void deactivate() {
-    _controller ?? _controller.pause();
-    print('deactive');
+    controller ?? controller.pause();
     super.deactivate();
   }
 
@@ -56,9 +56,8 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
     //Sayfadan çıkarken ekranı dikey konuma getiriyoruz.
     //Eğer video tam ekran olursa ekranımız diğer sayfalarda yatay ekran olarak kalıyor.
     setScreenPortrait();
-    _controller ?? _controller.dispose();
-    sesiBitir();
-    print('dispose');
+    controller ?? controller.dispose();
+    konu.sorular ?? sesiBitir();
     super.dispose();
   }
 
@@ -70,7 +69,7 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
         centerTitle: true,
       ),
       body: Center(
-        child: !isVideoEnded ? sorular() : youtubePlayer(),
+        child: isVideoEnded ? sorular() : youtubePlayer(yPlayer, controller),
       ),
     );
   }
@@ -82,18 +81,17 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
     ]);
   }
 
-  Widget youtubePlayer() {
-    return YoutubePlayer(
-        controller: _controller,
-        showVideoProgressIndicator: false,
-        onEnded: (YoutubeMetaData md) {
-          setScreenPortrait();
-          _controller.pause();
-          setState(() => isVideoEnded = true);
-        });
+  void yPlayer() {
+    setScreenPortrait();
+    controller.pause();
+    konu.sorular != null
+        ? setState(() => isVideoEnded = true)
+        : Navigator.pop(context);
   }
 
+  //Soru ekranı
   Widget sorular() {
+    //Şıkların yerinin değişmesi için listeleme yapıp shuffle kullanıyoruz.
     var _siklar = <String>[
       konu.sorular[_index].secenek1,
       konu.sorular[_index].secenek2,
@@ -107,6 +105,7 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
     }
     return Column(
       children: <Widget>[
+        //Soru resmi
         Container(
           padding: EdgeInsets.all(5),
           height: _height * 0.2,
@@ -120,34 +119,42 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
           onPressed: () => soruyuOku(konu.sorular[_index]),
           child: Icon(Icons.volume_up),
         ),
+        //Şıklar
         Expanded(
-          child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
+                maxCrossAxisExtent: _width * 0.5,
+              ),
+              itemCount: _siklar.length,
+              itemBuilder: (c, i) => _con(_siklar[i]),
             ),
-            itemCount: _siklar.length,
-            itemBuilder: (c, i) => _con(_siklar[i]),
           ),
         ),
       ],
     );
   }
 
+  //Şık widget
   Widget _con(String url) {
     bool _isCorrect;
 
+    //Cevap kontrolu
     void checkAnswer() async {
       _isCorrect = url == konu.sorular[_index].dogruCevap ? true : false;
       if (_isCorrect) {
-        //await playLocal();
         await dogruCevapSesiniCal();
-        await Future.delayed(Duration(seconds: 3));
+        //Sesin çalması için bekleme süresi!
+        await Future.delayed(Duration(seconds: 5));
+        //Soru sayı kontrolü
         if (_index < (konu.sorular.length - 1)) {
           _index++;
           isFirstTime = true;
         } else {
+          //Sorular bitince ana sayfaya dön
           Navigator.pop(context);
         }
       } else {
@@ -161,9 +168,13 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
     return InkWell(
       onTap: checkAnswer,
       child: Container(
-        width: _height * 0.07,
-        height: _width * 0.06,
-        padding: EdgeInsets.all(20),
+        width: _height * 0.05,
+        height: _width * 0.05,
+        decoration: BoxDecoration(
+          border: Border.all(width: 3),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        padding: EdgeInsets.all(10),
         child: Image.network(
           url,
           fit: BoxFit.cover,

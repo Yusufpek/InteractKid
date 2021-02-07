@@ -25,6 +25,7 @@ dependencies:
     sdk: flutter
   audioplayers: ^0.17.3
   cupertino_icons: ^1.0.0
+  lottie: ^0.7.0+1
   youtube_player_flutter: ^7.0.0+7
 
 dev_dependencies:
@@ -44,7 +45,7 @@ flutter:
   assets:
     - assets/
     #- tebrik.mp3
-   # - yanlisCevap.mp3
+  # - yanlisCevap.mp3
   #  - kirmiziKova.mp3
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
