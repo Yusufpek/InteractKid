@@ -4,44 +4,46 @@ List<Soru> renkSorulari = [
   Soru(
     soruKoku: 'kirmiziKova.mp3',
     soruResmi:
-        'https://cdn.pixabay.com/photo/2016/01/21/20/42/hare-1154799_960_720.png',
+        'https://cdn.pixabay.com/photo/2013/07/13/11/48/bucket-158699__340.png',
     dogruCevap:
-        'https://media.istockphoto.com/vectors/vintage-pop-art-yellow-background-banner-vector-illustration-vector-id1179585271?b=1&k=6&m=1179585271&s=170667a&w=0&h=DbpszMGP_0bUjGWckF4mkkdfjzDRQk0tM_wKA5UFTTU=',
+        'https://cdn.pixabay.com/photo/2012/04/15/20/53/cherries-35288__340.png',
     secenek1:
-        'https://cdn.pixabay.com/photo/2014/05/15/22/44/paint-345296__340.jpg',
+        'https://cdn.pixabay.com/photo/2012/04/15/20/53/cherries-35288__340.png',
     secenek2:
-        'https://cdn.pixabay.com/photo/2016/09/10/12/40/grass-1659054__340.jpg',
-    secenek3: 'https://cdn.akakce.com/iv/9040/588/588716510z.jpg',
+        'https://cdn.pixabay.com/photo/2012/04/05/01/45/baseball-25761__340.png',
+    secenek3:
+        'https://cdn.pixabay.com/photo/2013/07/13/10/41/hat-157581__340.png',
     secenek4:
-        'https://media.istockphoto.com/vectors/vintage-pop-art-yellow-background-banner-vector-illustration-vector-id1179585271?b=1&k=6&m=1179585271&s=170667a&w=0&h=DbpszMGP_0bUjGWckF4mkkdfjzDRQk0tM_wKA5UFTTU=',
+        'https://images-ext-2.discordapp.net/external/yWYYLTFEex4YNNNE8gkTksWM3zM5Gpr8t3fVIcikG-w/https/w7.pngwing.com/pngs/753/863/png-transparent-metal-copper-lid-brown-bucket-miscellaneous-brown-lid.png?width=480&height=480',
   ),
   Soru(
     soruKoku: 'siyahKova.mp3',
     soruResmi:
-        'https://cdn.pixabay.com/photo/2016/01/21/20/42/hare-1154799_960_720.png',
+        'https://cdn.pixabay.com/photo/2014/04/03/00/33/bucket-308678__340.png',
     dogruCevap:
-        'https://media.istockphoto.com/vectors/vintage-pop-art-yellow-background-banner-vector-illustration-vector-id1179585271?b=1&k=6&m=1179585271&s=170667a&w=0&h=DbpszMGP_0bUjGWckF4mkkdfjzDRQk0tM_wKA5UFTTU=',
+        'https://cdn.pixabay.com/photo/2013/07/13/10/41/hat-157581__340.png',
     secenek1:
-        'https://cdn.pixabay.com/photo/2014/05/15/22/44/paint-345296__340.jpg',
+        'https://cdn.pixabay.com/photo/2013/07/13/10/41/hat-157581__340.png',
     secenek2:
-        'https://cdn.pixabay.com/photo/2016/09/10/12/40/grass-1659054__340.jpg',
+        'https://cdn.pixabay.com/photo/2012/04/05/01/45/baseball-25761__340.png',
     secenek3: 'https://cdn.akakce.com/iv/9040/588/588716510z.jpg',
     secenek4:
-        'https://media.istockphoto.com/vectors/vintage-pop-art-yellow-background-banner-vector-illustration-vector-id1179585271?b=1&k=6&m=1179585271&s=170667a&w=0&h=DbpszMGP_0bUjGWckF4mkkdfjzDRQk0tM_wKA5UFTTU=',
+        'https://images-ext-2.discordapp.net/external/yWYYLTFEex4YNNNE8gkTksWM3zM5Gpr8t3fVIcikG-w/https/w7.pngwing.com/pngs/753/863/png-transparent-metal-copper-lid-brown-bucket-miscellaneous-brown-lid.png?width=480&height=480',
   ),
   Soru(
     soruKoku: 'kahverengiKova.mp3',
     soruResmi:
-        'https://cdn.pixabay.com/photo/2013/07/13/12/47/suitcase-160345__340.png',
+        'https://images-ext-2.discordapp.net/external/yWYYLTFEex4YNNNE8gkTksWM3zM5Gpr8t3fVIcikG-w/https/w7.pngwing.com/pngs/753/863/png-transparent-metal-copper-lid-brown-bucket-miscellaneous-brown-lid.png?width=480&height=480',
     dogruCevap:
         'https://cdn.pixabay.com/photo/2013/07/13/12/47/suitcase-160345__340.png',
     secenek1:
         'https://cdn.pixabay.com/photo/2013/07/13/12/47/suitcase-160345__340.png',
     secenek2:
-        'https://cdn.pixabay.com/photo/2016/09/10/12/40/grass-1659054__340.jpg',
-    secenek3: 'https://cdn.akakce.com/iv/9040/588/588716510z.jpg',
+        'https://cdn.pixabay.com/photo/2012/04/05/01/45/baseball-25761__340.png',
+    secenek3:
+        'https://cdn.pixabay.com/photo/2013/07/13/10/41/hat-157581__340.png',
     secenek4:
-        'https://media.istockphoto.com/vectors/vintage-pop-art-yellow-background-banner-vector-illustration-vector-id1179585271?b=1&k=6&m=1179585271&s=170667a&w=0&h=DbpszMGP_0bUjGWckF4mkkdfjzDRQk0tM_wKA5UFTTU=',
+        'https://images-ext-2.discordapp.net/external/yWYYLTFEex4YNNNE8gkTksWM3zM5Gpr8t3fVIcikG-w/https/w7.pngwing.com/pngs/753/863/png-transparent-metal-copper-lid-brown-bucket-miscellaneous-brown-lid.png?width=480&height=480',
   ),
 ];
 

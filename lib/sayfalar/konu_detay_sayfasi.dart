@@ -41,13 +41,15 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
     super.didChangeDependencies();
     _height = MediaQuery.of(context).size.height;
     _width = MediaQuery.of(context).size.width;
-    konu.sorular ?? await baslangicSesleriniYukle();
-    konu.sorular ?? await sesleriYukle(konu.sorular);
+    if (konu.sorular != null) {
+      await baslangicSesleriniYukle();
+      await sesleriYukle(konu.sorular);
+    }
   }
 
   @override
   void deactivate() {
-    controller ?? controller.pause();
+    if (controller != null) controller.pause();
     super.deactivate();
   }
 
@@ -56,8 +58,8 @@ class _KonuSayfasiState extends State<KonuSayfasi> {
     //Sayfadan çıkarken ekranı dikey konuma getiriyoruz.
     //Eğer video tam ekran olursa ekranımız diğer sayfalarda yatay ekran olarak kalıyor.
     setScreenPortrait();
-    controller ?? controller.dispose();
-    konu.sorular ?? sesiBitir();
+    if (controller != null) controller.dispose();
+    if (konu.sorular != null) sesiBitir();
     super.dispose();
   }
 
